@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KeyGuardClient.CardForm" Collapsed="true">
+    <Position X="8.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgGAEAAEASIAARCCAgCgiAACChAAABCAAAAABCRCAEk=</HashCode>
+      <FileName>Forms\CardForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.ConnectSettingsForm" Collapsed="true">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADBAAgACAAAAQIAECAAAACAAAAEBAAAAAAAAQAAAA=</HashCode>
+      <FileName>Forms\ConnectSettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.DateZoneSettingsForm" Collapsed="true">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/0AIED7MDzgcBJUDBQKLU2GCBoDP8wAwQEgCgQV5vhk=</HashCode>
+      <FileName>Forms\DateZoneSettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.Form1" Collapsed="true">
+    <Position X="8.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggQEIAABICAAAAEAAACCAAACIAAAAQABANIAAAAAIAg=</HashCode>
+      <FileName>Forms\Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.MainSettingsForm" Collapsed="true">
+    <Position X="10" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAEQJACAAiAAggAAAACAJQACQgAACQAAECBAAASAQBM=</HashCode>
+      <FileName>Forms\MainSettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.TelegramEventArgs" Collapsed="true">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Interfaces\IConnect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.KeyGuardConnect" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAgBEIAAAAAAAAAAAAAEIgCAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KeyGuardConnect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KeyGuardClient.KeyGuardPacket" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgACQEBAACAAgAKAAEEBBQAIAAAAAAAIAIAAAAAAAAA=</HashCode>
+      <FileName>KeyGuardPacket.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="KeyGuardClient.Program" Collapsed="true">
+    <Position X="11.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.Card" Collapsed="true">
+    <Position X="6.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAkAAgAAAAAEAAAAAAAAAAASAQAEBBQCAAA=</HashCode>
+      <FileName>Types\Card.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.DateZone" Collapsed="true">
+    <Position X="11.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBAAAAACgAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Types\DateZone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.Key" Collapsed="true">
+    <Position X="10" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAgAAAAAAAFAAAQAAAABAACIAABACAQAAAA=</HashCode>
+      <FileName>Types\Key.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.LevelToKeys" Collapsed="true">
+    <Position X="8.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Types\LevelToKeys.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.Text" Collapsed="true">
+    <Position X="11.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAQBAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Types\Text.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.Properties.Resources" Collapsed="true">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyGuardClient.Properties.Settings" Collapsed="true">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="KeyGuardClient.Telegram" Collapsed="true">
+    <Position X="6.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAUGACBIA4AwIMAAACAAAAAAABCAAAgkQJABARg=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="KeyGuardClient.IConnect" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAEAAAAAAAAAAAAAAEIgCAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IConnect.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="KeyGuardClient.IPacket" Collapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPacket.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="KeyGuardClient.UserHandler" Collapsed="true">
+    <Position X="6.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
