@@ -480,7 +480,7 @@ namespace KeyGuardClient
             Len = BitConverter.ToUInt16(inBytes, lenPtr);
             DstID = BitConverter.ToUInt32(inBytes, sourcePtr);          // - источник = приемник - устр-во
             SrcID = BitConverter.ToUInt32(inBytes, sourcePtr + 4);      // - приемник = источник - сервер
-            Ref = BitConverter.ToUInt16(inBytes, refPtr);
+            //Ref = BitConverter.ToUInt16(inBytes, refPtr);
             Bcc = new byte[1] { 0 };
             Cmd_T = new byte[1] { inBytes[commandPtr] };
             Ident = new byte[1] { inBytes[identPtr] };
