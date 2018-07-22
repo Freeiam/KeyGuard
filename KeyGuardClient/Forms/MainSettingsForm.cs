@@ -107,7 +107,7 @@ namespace KeyGuardClient
         
         private void timerText_Tick(object sender, EventArgs e)
         {
-            //snif.Text += keyGPack.GetDebugMess.ToString();
+            snif.Text += keyGPack.GetDebugMess.ToString();
             keyGPack.GetDebugMess.Clear();
             receivedByteLabel.Text = "Кол-во принятых байт: " + keyGPack.GetReceiveByte;
         }

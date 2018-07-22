@@ -34,7 +34,7 @@ namespace KeyGuardClient
         }
         public Key(uint addr, byte module, byte cell, byte[] iButton)
         {
-            Addr = 10; //addr;
+            Addr =  addr;
             Module = module;
             Cell = cell;
             if (iButton.Length == 8)

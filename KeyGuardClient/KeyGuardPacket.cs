@@ -21,6 +21,8 @@ namespace KeyGuardClient
         public List<LevelToKeys> LKeys { get; } = new List<LevelToKeys>(); //<- список уровней доступа к ключам
         public List<DateZone> DateZones { get; } = new List<DateZone>();   //<- список временных зон
         public List<Key> UnkKeys { get; } = new List<Key>();               //<- список неизвестных ключей в системе
+        private uint addrKey { get; set; } = 1;                            //<- индекс записи ключа в БД(временно)
+
         public int GetReceiveByte
         {
             get
@@ -109,31 +111,39 @@ namespace KeyGuardClient
         void startCMD()
         {
             // - запросим пользователей
-           // someTelegram = new Telegram(0x91, 0x04, 0xE2, 4);
-           // someTelegram.Data[0] = 2;
-           // hardWareConnect.OutBuf.Enqueue(someTelegram);
-            someTelegram = new Telegram(0x91, 0x04, 0xE2, 4);
-            someTelegram.Data[0] = 3;
+            // someTelegram = new Telegram(0x91, 0x04, 0xE2, 4);
+            // someTelegram.Data[0] = 2;
+            // hardWareConnect.OutBuf.Enqueue(someTelegram);
+            //someTelegram = new Telegram(0x91, 0x04, 0xE2, 4);
+            //someTelegram.Data[0] = 3;
             //hardWareConnect.OutBuf.Enqueue(someTelegram);
             // - запрос уровней доступа к ключам
-            someTelegram = new Telegram(0x91, 0x10, 0xE2, 1);
-            someTelegram.Data[0] = 1;
+            //someTelegram = new Telegram(0x91, 0x10, 0xE2, 1);
+            //someTelegram.Data[0] = 1;
             //hardWareConnect.OutBuf.Enqueue(someTelegram);
-            someTelegram = new Telegram(0x91, 0x10, 0xE2, 2);
-            someTelegram.Data[0] = 2;
+            //someTelegram = new Telegram(0x91, 0x10, 0xE2, 2);
+            //someTelegram.Data[0] = 2;
             //hardWareConnect.OutBuf.Enqueue(someTelegram);
             // - debug - удалим ключ
-            someTelegram = new Telegram(0x91, 0x0F, 0xE3, new byte[4] { 10, 0, 0, 0 });
+            //someTelegram = new Telegram(0x91, 0x0F, 0xE3, new byte[4] { 10, 0, 0, 0 });
             //hardWareConnect.OutBuf.Enqueue(someTelegram);
             // - debug - удалим пользователя
-            someTelegram = new Telegram(0x91, 0x04, 0xE3, new byte[4] { 4, 0, 0, 0 });
+            //someTelegram = new Telegram(0x91, 0x04, 0xE3, new byte[4] { 4, 0, 0, 0 });
             //hardWareConnect.OutBuf.Enqueue(someTelegram);
             // - debug - удалим пользователя
-           // someTelegram = new Telegram(0x91, 0x04, 0xE3, new byte[4] { 2, 0, 0, 0 });
+            // someTelegram = new Telegram(0x91, 0x04, 0xE3, new byte[4] { 2, 0, 0, 0 });
             //hardWareConnect.OutBuf.Enqueue(someTelegram);
-            // - запрос состояния неизвестных ключей
-            someTelegram = new Telegram(0x82, 0x0F, 0xF3);
+            // - format
+            someTelegram = new Telegram(0x91, 0xFF, 0xEA, new byte[4] { 0x78, 0x56, 0x34, 0x12 });
+           ///hardWareConnect.OutBuf.Enqueue(someTelegram);
+            // - запрос состояния неизвестных ключей        
+            //someTelegram = new Telegram(0x82, 0x0F, 0xF3);
+            // - запрос состояния списка
+            //someTelegram = new Telegram(0x82, 0x0E, 0xF3);
+            // - заголовок
+            //someTelegram = new Telegram(0x91, 0xFE, 0xE2, new byte[4] { 0,0,0,0} );
             hardWareConnect.OutBuf.Enqueue(someTelegram);
+
 
         }
         // callback
@@ -204,6 +214,11 @@ namespace KeyGuardClient
                                         GetDebugMess.Append(Encoding.ASCII.GetString(tg.Data, 4, tg.Len - 36 - 4));
                                     }
                                 }
+                                // - заголовок
+                                if(tg.Ident[0] == 0xFE)
+                                {
+
+                                }
                                 break;
                             // - операция запись
                             case 0xE1: 
@@ -215,7 +230,8 @@ namespace KeyGuardClient
                                 // - Ключи(Key)
                                 if (tg.Ident[0] == 0x0F && tg.Value[0] == 0xE1)
                                 {
-                                    AddNewUnkKey(UnkKeys.Last().Addr);
+                                    //AddNewUnkKey(UnkKeys.Last().Addr);
+                                    AddNewUnkKey(BitConverter.ToUInt32(tg.Data, 0));
                                 }
                                 // - Уровень доступа к ключам
                                 if (tg.Ident[0] == 0x10 && tg.Value[0] == 0xE1)
@@ -233,6 +249,19 @@ namespace KeyGuardClient
 
                                 }
                                 break;
+                            // - форматирование
+                            case 0xEA:
+                                // - форматирование памяти
+                                if(tg.Ident[0] == 0xFF)
+                                {
+                                    // - чтение заголовка
+                                    //someTelegram = new Telegram(0x91, 0xFE, 0xE2, new byte[8] { 0x00, 0x00, 0x00, 0x01, 0x78, 0x56, 0x34, 0x12 });
+                                    //hardWareConnect.OutBuf.Enqueue(someTelegram);
+                                    // - запрос состояния неизвестных ключей        
+                                    someTelegram = new Telegram(0x82, 0x0F, 0xF3);
+                                    hardWareConnect.OutBuf.Enqueue(someTelegram);
+                                }
+                                break;                            
                         }                                                
                         break;
                     // - ответ на запросы состояния
@@ -243,7 +272,7 @@ namespace KeyGuardClient
                         {
                             if(tg.Len == 50)
                             {
-                                Key newKey = new Key(BitConverter.ToUInt32(tg.Data, 0), tg.Data[4], tg.Data[5], new byte[] {tg.Data[6], tg.Data[7],
+                                Key newKey = new Key(addrKey++/*BitConverter.ToUInt32(tg.Data, 0)*/, tg.Data[4], tg.Data[5], new byte[] {tg.Data[6], tg.Data[7],
                                                                         tg.Data[8], tg.Data[9], tg.Data[10], tg.Data[11], tg.Data[12], tg.Data[13]});
                                 if(UnkKeys.Find(x => x.Addr == newKey.Addr) == null)
                                 {

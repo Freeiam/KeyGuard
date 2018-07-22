@@ -61,9 +61,14 @@ namespace KeyGuardClient
                                     if(len >= 36 && (netStream.Read(inBytes, 18, len - 10) == len - 10))     //- прочитаем оставшиеся байты вместе с конечной последов.(4байта))
                                     {
                                         if (BitConverter.ToUInt32(inBytes, len + 4) == Telegram.end)
-                                        {
-                                            DebugMess.Append("<--- Read ---<<");
-                                            DebugMess.Append(BitConverter.ToString(inBytes, 0, len + 8));
+                                        {    
+                                            // - debug
+                                            //if(inBytes[Telegram.commandPtr] == 0x83 || inBytes[Telegram.commandPtr] == 0x85 || inBytes[Telegram.identPtr] == 0xFE)
+                                            {
+                                                DebugMess.Append("<--- Read ---<<");
+                                                DebugMess.Append(BitConverter.ToString(inBytes, 0, len + 8));
+                                            }         
+                                            // - debug
                                             ReceiveDataLength += len;
                                             InBuf.Enqueue(new Telegram(inBytes));               // запишем телеграмму в очередь  
                                             GetPacket(this, new EventArgs());                   // инициируем событие отправки пакетов клиенту                                          

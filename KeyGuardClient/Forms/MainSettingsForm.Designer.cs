@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.maingroupBox = new System.Windows.Forms.GroupBox();
+            this.keysInfoLabel = new System.Windows.Forms.Label();
             this.addLevelToKeysButton = new System.Windows.Forms.Button();
             this.snif = new System.Windows.Forms.TextBox();
             this.keyComboBox = new System.Windows.Forms.ComboBox();
@@ -47,7 +48,6 @@
             this.textBoxIdent = new System.Windows.Forms.TextBox();
             this.textBoxValue = new System.Windows.Forms.TextBox();
             this.timerText = new System.Windows.Forms.Timer(this.components);
-            this.keysInfoLabel = new System.Windows.Forms.Label();
             this.maingroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +75,14 @@
             this.maingroupBox.Size = new System.Drawing.Size(1147, 423);
             this.maingroupBox.TabIndex = 1;
             this.maingroupBox.TabStop = false;
+            // 
+            // keysInfoLabel
+            // 
+            this.keysInfoLabel.AutoSize = true;
+            this.keysInfoLabel.Location = new System.Drawing.Point(611, 149);
+            this.keysInfoLabel.Name = "keysInfoLabel";
+            this.keysInfoLabel.Size = new System.Drawing.Size(0, 13);
+            this.keysInfoLabel.TabIndex = 17;
             // 
             // addLevelToKeysButton
             // 
@@ -218,15 +226,8 @@
             // timerText
             // 
             this.timerText.Enabled = true;
+            this.timerText.Interval = 1000;
             this.timerText.Tick += new System.EventHandler(this.timerText_Tick);
-            // 
-            // keysInfoLabel
-            // 
-            this.keysInfoLabel.AutoSize = true;
-            this.keysInfoLabel.Location = new System.Drawing.Point(611, 149);
-            this.keysInfoLabel.Name = "keysInfoLabel";
-            this.keysInfoLabel.Size = new System.Drawing.Size(0, 13);
-            this.keysInfoLabel.TabIndex = 17;
             // 
             // MainSettingsForm
             // 
