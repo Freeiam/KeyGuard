@@ -96,7 +96,7 @@ namespace KeyGuardClient
             // - запишем тексты
             string textStr;
             textStr = surnameTextBox.Text + ' ' + nameTextBox.Text + ' ' + patronymTextBox.Text;
-            Text newText = new Text(keyGPack.Texts.Last().Addr + 1);
+            Text newText = new Text(1);  // <- bag должна быть сквозная адресация на тексты //new Text(keyGPack.Texts.Last().Addr + 1);
             byte[] text = Encoding.ASCII.GetBytes(textStr);
             if (text.Length <= 31)
             {

@@ -30,10 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.maingroupBox = new System.Windows.Forms.GroupBox();
+            this.getUnkKeys = new System.Windows.Forms.Button();
+            this.checkedKeysBox = new System.Windows.Forms.CheckedListBox();
             this.keysInfoLabel = new System.Windows.Forms.Label();
             this.addLevelToKeysButton = new System.Windows.Forms.Button();
             this.snif = new System.Windows.Forms.TextBox();
-            this.keyComboBox = new System.Windows.Forms.ComboBox();
             this.dateZoneComboBox = new System.Windows.Forms.ComboBox();
             this.receivedByteLabel = new System.Windows.Forms.Label();
             this.keyLabel = new System.Windows.Forms.Label();
@@ -53,10 +54,11 @@
             // 
             // maingroupBox
             // 
+            this.maingroupBox.Controls.Add(this.getUnkKeys);
             this.maingroupBox.Controls.Add(this.keysInfoLabel);
             this.maingroupBox.Controls.Add(this.addLevelToKeysButton);
             this.maingroupBox.Controls.Add(this.snif);
-            this.maingroupBox.Controls.Add(this.keyComboBox);
+            this.maingroupBox.Controls.Add(this.checkedKeysBox);
             this.maingroupBox.Controls.Add(this.dateZoneComboBox);
             this.maingroupBox.Controls.Add(this.receivedByteLabel);
             this.maingroupBox.Controls.Add(this.keyLabel);
@@ -76,17 +78,37 @@
             this.maingroupBox.TabIndex = 1;
             this.maingroupBox.TabStop = false;
             // 
+            // getUnkKeys
+            // 
+            this.getUnkKeys.Location = new System.Drawing.Point(704, 141);
+            this.getUnkKeys.Name = "getUnkKeys";
+            this.getUnkKeys.Size = new System.Drawing.Size(158, 23);
+            this.getUnkKeys.TabIndex = 19;
+            this.getUnkKeys.Text = "Запросить ключи";
+            this.getUnkKeys.UseVisualStyleBackColor = true;
+            this.getUnkKeys.Click += new System.EventHandler(this.getUnkKeys_Click);
+            // 
+            // checkedKeysBox
+            // 
+            this.checkedKeysBox.FormattingEnabled = true;
+            this.checkedKeysBox.Location = new System.Drawing.Point(468, 144);
+            this.checkedKeysBox.Name = "checkedKeysBox";
+            this.checkedKeysBox.Size = new System.Drawing.Size(120, 244);
+            this.checkedKeysBox.TabIndex = 18;
+            this.checkedKeysBox.SelectedValueChanged += new System.EventHandler(this.checkedKeysBox_SelectedValueChanged);
+            // 
             // keysInfoLabel
             // 
             this.keysInfoLabel.AutoSize = true;
-            this.keysInfoLabel.Location = new System.Drawing.Point(611, 149);
+            this.keysInfoLabel.Location = new System.Drawing.Point(616, 208);
             this.keysInfoLabel.Name = "keysInfoLabel";
-            this.keysInfoLabel.Size = new System.Drawing.Size(0, 13);
+            this.keysInfoLabel.Size = new System.Drawing.Size(84, 13);
             this.keysInfoLabel.TabIndex = 17;
+            this.keysInfoLabel.Text = "Инф. о ключе:  ";
             // 
             // addLevelToKeysButton
             // 
-            this.addLevelToKeysButton.Location = new System.Drawing.Point(704, 113);
+            this.addLevelToKeysButton.Location = new System.Drawing.Point(704, 108);
             this.addLevelToKeysButton.Name = "addLevelToKeysButton";
             this.addLevelToKeysButton.Size = new System.Drawing.Size(158, 23);
             this.addLevelToKeysButton.TabIndex = 16;
@@ -101,15 +123,6 @@
             this.snif.Name = "snif";
             this.snif.Size = new System.Drawing.Size(321, 194);
             this.snif.TabIndex = 1;
-            // 
-            // keyComboBox
-            // 
-            this.keyComboBox.FormattingEnabled = true;
-            this.keyComboBox.Location = new System.Drawing.Point(468, 141);
-            this.keyComboBox.Name = "keyComboBox";
-            this.keyComboBox.Size = new System.Drawing.Size(121, 21);
-            this.keyComboBox.TabIndex = 12;
-            this.keyComboBox.SelectedIndexChanged += new System.EventHandler(this.keyComboBox_SelectedIndexChanged);
             // 
             // dateZoneComboBox
             // 
@@ -260,9 +273,10 @@
         private System.Windows.Forms.Timer timerText;
         private System.Windows.Forms.ComboBox dateZoneComboBox;
         private System.Windows.Forms.Label dateZoneLabel;
-        private System.Windows.Forms.ComboBox keyComboBox;
         private System.Windows.Forms.Label keyLabel;
         private System.Windows.Forms.Button addLevelToKeysButton;
         private System.Windows.Forms.Label keysInfoLabel;
+        private System.Windows.Forms.CheckedListBox checkedKeysBox;
+        private System.Windows.Forms.Button getUnkKeys;
     }
 }

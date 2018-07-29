@@ -89,9 +89,9 @@ namespace KeyGuardClient
         public void MainSettingsForm_AddNewUnkKey(uint key)
         {
             {
-                if (key > 0 && !keyComboBox.Items.Contains(key))
+                if (key > 0 && !checkedKeysBox.Items.Contains(key))
                 {
-                    this.Invoke((Action) delegate{ keyComboBox.Items.Add(key); });
+                    this.Invoke((Action) delegate{ checkedKeysBox.Items.Add(key); });
                 }
             }            
         }
@@ -150,22 +150,31 @@ namespace KeyGuardClient
         {
             ushort[] timeZn = new ushort[16];           // - временная зона
             ushort[] dZlist = new ushort[16];           // - ключи
-            if (ushort.TryParse(dateZoneComboBox.SelectedItem.ToString(), out timeZn[0])
-                && ushort.TryParse(keyComboBox.SelectedItem.ToString(), out dZlist[0]))
+            for(int i = 0; i < checkedKeysBox.CheckedItems.Count; i++)
+            {
+                // bag - длина массива dZlist
+                ushort.TryParse(checkedKeysBox.CheckedItems[i].ToString(), out dZlist[i]);
+            }            
+            if (ushort.TryParse(dateZoneComboBox.SelectedItem.ToString(), out timeZn[0]))               
             {
                 keyGPack.LKeys.Add(new LevelToKeys(3, timeZn, dZlist));
                 keyGPack.SendPack(new Telegram(0x91, 0x10, 0xE1, keyGPack.LKeys.Last().GetBytesLKeys()));       // - отправим устр-ву
             }                           
-        }
+        }       
 
-        private void keyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkedKeysBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            keysInfoLabel.Text = String.Empty;
-            Key keyForLabel = keyGPack.UnkKeys.Find(x => x.Addr == (uint)keyComboBox.SelectedItem);
+            keysInfoLabel.Text = "Инф. о ключе:  ";
+            Key keyForLabel = keyGPack.UnkKeys.Find(x => x.Addr == (uint)checkedKeysBox.SelectedItem);
             if( keyForLabel != null)
             {
                 keysInfoLabel.Text = keyForLabel.SiButton;
-            }            
+            }
+        }
+
+        private void getUnkKeys_Click(object sender, EventArgs e)
+        {
+            keyGPack.SendPack(new Telegram(0x82, 0x0F, 0xF3));
         }
     }
 }

@@ -57,7 +57,9 @@ namespace KeyGuardClient
             hardWareConnect = connect;
         }
         public KeyGuardPacket() { }
-        // для отправки команды
+        /// <summary>
+        /// отправка телеграммы на HW
+        /// </summary>         
         public void SendPack(Telegram tg)
         {            
             hardWareConnect.OutBuf.Enqueue(tg);
@@ -258,8 +260,8 @@ namespace KeyGuardClient
                                     //someTelegram = new Telegram(0x91, 0xFE, 0xE2, new byte[8] { 0x00, 0x00, 0x00, 0x01, 0x78, 0x56, 0x34, 0x12 });
                                     //hardWareConnect.OutBuf.Enqueue(someTelegram);
                                     // - запрос состояния неизвестных ключей        
-                                    someTelegram = new Telegram(0x82, 0x0F, 0xF3);
-                                    hardWareConnect.OutBuf.Enqueue(someTelegram);
+                                    //someTelegram = new Telegram(0x82, 0x0F, 0xF3);
+                                    //hardWareConnect.OutBuf.Enqueue(someTelegram);
                                 }
                                 break;                            
                         }                                                
