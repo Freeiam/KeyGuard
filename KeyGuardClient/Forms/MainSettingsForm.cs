@@ -150,16 +150,19 @@ namespace KeyGuardClient
         {
             ushort[] timeZn = new ushort[16];           // - временная зона
             ushort[] dZlist = new ushort[16];           // - ключи
-            for(int i = 0; i < checkedKeysBox.CheckedItems.Count; i++)
+            ushort timeZnItem = 0;            
+            // - сформируем пары: временная зона/ключ
+            if (ushort.TryParse(dateZoneComboBox.SelectedItem.ToString(), out timeZnItem))
             {
-                // bag - длина массива dZlist
-                ushort.TryParse(checkedKeysBox.CheckedItems[i].ToString(), out dZlist[i]);
-            }            
-            if (ushort.TryParse(dateZoneComboBox.SelectedItem.ToString(), out timeZn[0]))               
-            {
-                keyGPack.LKeys.Add(new LevelToKeys(3, timeZn, dZlist));
+                for (int i = 0; i < checkedKeysBox.CheckedItems.Count; i++)
+                {
+                    // bag - длина массива dZlist
+                    ushort.TryParse(checkedKeysBox.CheckedItems[i].ToString(), out dZlist[i]);
+                    timeZn[i] = timeZnItem;     //<- запишем выбранную времен. зону в массив(для всех ключей одинаковая)
+                }
+                keyGPack.LKeys.Add(new LevelToKeys(1, timeZn, dZlist));
                 keyGPack.SendPack(new Telegram(0x91, 0x10, 0xE1, keyGPack.LKeys.Last().GetBytesLKeys()));       // - отправим устр-ву
-            }                           
+            }
         }       
 
         private void checkedKeysBox_SelectedValueChanged(object sender, EventArgs e)
@@ -168,10 +171,14 @@ namespace KeyGuardClient
             Key keyForLabel = keyGPack.UnkKeys.Find(x => x.Addr == (uint)checkedKeysBox.SelectedItem);
             if( keyForLabel != null)
             {
-                keysInfoLabel.Text = keyForLabel.SiButton;
+                keysInfoLabel.Text += keyForLabel.SiButton;
             }
         }
-
+        /// <summary>
+        /// Запрос состояния неизвестных ключей
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void getUnkKeys_Click(object sender, EventArgs e)
         {
             keyGPack.SendPack(new Telegram(0x82, 0x0F, 0xF3));

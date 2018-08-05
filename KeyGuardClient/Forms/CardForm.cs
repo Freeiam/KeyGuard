@@ -119,7 +119,7 @@ namespace KeyGuardClient
             ushort uLKey = 0;                                                                                       // - уровень доступа к ключам из combobox
             if(ushort.TryParse(lKeysBox.SelectedItem.ToString(), out uLKey))
             {
-                keyGPack.Cards.Add(new Card(4, 0x03000003, 0x1E1CB60A, 0x461CB60A, uLKey, (ushort)newText.Addr, fisnumCard));
+                keyGPack.Cards.Add(new Card(1, 0x03000003, 0x1E1CB60A, 0x461CB60A, uLKey, (ushort)newText.Addr, fisnumCard));
                 keyGPack.SendPack(new Telegram(0x91, 0x04, 0xE1, keyGPack.Cards.Last().GetBytesCard()));            // - отправим устр-ву
             }
             

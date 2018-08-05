@@ -87,7 +87,7 @@ namespace KeyGuardClient
             // - затем, есть ли временная зона для добавления в устр-во?
             if(typeMass.Length > 0 || startMass.Length > 0 || endMass.Length > 0)
             {
-                keyGPack.DateZones.Add(new DateZone(3, typeMass, startMass, endMass));
+                keyGPack.DateZones.Add(new DateZone(1, typeMass, startMass, endMass));
                 keyGPack.SendPack(new Telegram(0x91, 0x06, 0xE1, keyGPack.DateZones.Last().GetBytesDateZone()));            //<- отправим устр-ву
             }
         }
