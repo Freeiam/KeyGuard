@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace KeyGuardClient
 {
-    public delegate void UserHandler(uint userNumber);
+    public delegate void UserHandler(object o);
 
     /*public class Client
     {

@@ -14,6 +14,7 @@ namespace KeyGuardClient
         public UserHandler AddNewLevelToKeys;                      //<- добавление уровня доступа к ключам в список
         public UserHandler AddNewTimeZone;                         //<- добавление временной зоны в список
         public UserHandler AddNewUnkKey;                           //<- добавление неизвестного ключа
+        public UserHandler AddMessageBox;                          //<- информационное сообщение
         Telegram someTelegram;                                     //<- телеграмма для отправки
         // prop
         public List<Card> Cards { get; } = new List<Card>();               //<- список карт
@@ -266,6 +267,41 @@ namespace KeyGuardClient
                                 break;                            
                         }                                                
                         break;
+                    // - события от ключницы
+                    case 0x80:
+                        // - посмотрим какое событие пришло
+                        switch (tg.Ident[0])
+                        {
+                            // - событие от ключей
+                            case 0x0F:
+                                // - ключ выдан
+                                if(tg.Value[0] == 0x32 || tg.Value[0] == 0x3B)   //<- 3B - ?? почему-то приходит "Ключ выдан из другой ключницы"
+                                {
+                                    if(UnkKeys.Find(x => x.Addr == BitConverter.ToUInt32(tg.Data, 0)) != null)
+                                    {
+                                        string key_name = Encoding.ASCII.GetString( UnkKeys.Find(x => x.Addr == BitConverter.ToUInt32(tg.Data, 0)).Name );
+                                        string mess = "Ключ выдан - " + key_name;
+                                        AddMessageBox(mess);
+                                    }                                    
+                                }
+                                // - ключ вернут 
+                                if (tg.Value[0] == 0x72 || tg.Value[0] == 0x7B)   //<- 7B - ?? почему-то приходит "Ключ вернут в другую ключницу"
+                                {
+                                    if (UnkKeys.Find(x => x.Addr == BitConverter.ToUInt32(tg.Data, 0)) != null)
+                                    {
+                                        string key_name = Encoding.ASCII.GetString( UnkKeys.Find(x => x.Addr == BitConverter.ToUInt32(tg.Data, 0)).Name );
+                                        string mess = "Ключ вернут - " + key_name;
+                                        AddMessageBox(mess);
+                                    }
+                                }
+                                break;
+                            // - системное время
+                            case 0x19:
+                                if (tg.Value[0] == 0xEC)
+                                    ClientFlags |= WorkFlags.isSendSystemTime;
+                                break;
+                        }
+                        break;
                     // - ответ на запросы состояния
                     case 0x83:
                     case 0x85:
@@ -320,12 +356,7 @@ namespace KeyGuardClient
                                 someTelegram.Ref = reF;
                                 OutBuf.Enqueue(someTelegram);}*/                            
                         }
-                        break;
-                        // - системное время
-                    case 0x80:
-                        if (tg.Ident[0] == 0x19 && tg.Value[0] == 0xEC)
-                            ClientFlags |= WorkFlags.isSendSystemTime;
-                        break;
+                        break;                     
                     default:
                         break;
                 }

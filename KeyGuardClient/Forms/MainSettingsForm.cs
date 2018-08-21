@@ -22,6 +22,7 @@ namespace KeyGuardClient
                 // подключение callback-ов
                 keyGPack.AddNewUnkKey += MainSettingsForm_AddNewUnkKey;
                 keyGPack.AddNewTimeZone += MainSettingsForm_AddNewTimeZone;
+                keyGPack.AddMessageBox += MainSettingsForm_AddMessageBox;
             }
         }
         // props
@@ -75,9 +76,9 @@ namespace KeyGuardClient
         /// добавление временной зоны
         /// </summary>
         /// <param name="numbTimeZone"></param>
-        public void MainSettingsForm_AddNewTimeZone(uint numbTimeZone)
+        public void MainSettingsForm_AddNewTimeZone(object numbTimeZone)
         {
-            if(numbTimeZone > 0)
+            if((uint)numbTimeZone > 0)
             {
                 this.Invoke((Action)delegate { dateZoneComboBox.Items.Add(numbTimeZone); });
             }
@@ -86,14 +87,24 @@ namespace KeyGuardClient
         /// добавление неизвестного ключа
         /// </summary>
         /// <param name="key"></param>
-        public void MainSettingsForm_AddNewUnkKey(uint key)
+        public void MainSettingsForm_AddNewUnkKey(object key)
         {
             {
-                if (key > 0 && !checkedKeysBox.Items.Contains(key))
+                uint unkKey = (uint)key;
+                if (unkKey > 0 && !checkedKeysBox.Items.Contains(unkKey))
                 {
-                    this.Invoke((Action) delegate{ checkedKeysBox.Items.Add(key); });
+                    this.Invoke((Action) delegate{ checkedKeysBox.Items.Add(unkKey); });
                 }
             }            
+        }
+        /// <summary>
+        /// Информационное сообщение
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+       public void MainSettingsForm_AddMessageBox(object mess)
+        {
+            MessageBox.Show((string)mess, "Внимание!");
         }
         // --        
         private void connect_button_Click(object sender, EventArgs e)

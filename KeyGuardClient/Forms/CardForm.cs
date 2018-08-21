@@ -41,22 +41,24 @@ namespace KeyGuardClient
         /// добавление карты пользователя
         /// </summary>
         /// <param name="cardNumber"></param>
-        public void CardForm_AddNewCardToComboBox(uint cardNumber)
+        public void CardForm_AddNewCardToComboBox(object cardNumber)
         {
-            if (cardNumber > 0 && cardNumber < 255)
+            uint card = (uint)cardNumber;
+            if (card > 0 && card < 255)
             {
-                this.Invoke((Action) delegate { cardBox.Items.Add(cardNumber); });
+                this.Invoke((Action) delegate { cardBox.Items.Add(card); });
             }
         }
         /// <summary>
         /// добавление уровня доступа к ключам
         /// </summary>
         /// <param name="lKeysNumber"></param>
-        public void CardForm_AddNewLevelToKeys(uint lKeysNumber)
+        public void CardForm_AddNewLevelToKeys(object lKeysNumber)
         {
-            if (lKeysNumber > 0)
+            uint level = (uint)lKeysNumber;
+            if (level > 0)
             {
-                this.Invoke((Action)delegate { lKeysBox.Items.Add(lKeysNumber); });
+                this.Invoke((Action)delegate { lKeysBox.Items.Add(level); });
             }
         }
         // --

@@ -49,7 +49,7 @@ namespace KeyGuardClient
             string sIbutton = BitConverter.ToString(IButton, 0, 8);
             SiButton = "№Ключа = " + sIbutton + " №модуля = " + Module.ToString() + " №ячейки = " + Cell.ToString();
             // - debug
-            string s = "Ключ %s" + Addr + "M:%d" + Module + "N:%d" + Cell;
+            string s = "Room_number - " + (100 * ++module + cell).ToString();
             Name = new byte[24];
             Array.Copy(Encoding.ASCII.GetBytes(s), Name, s.Length);
         }
